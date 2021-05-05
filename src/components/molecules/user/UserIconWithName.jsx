@@ -1,10 +1,14 @@
-import React, { useContext } from "react";
+import React, { memo, useContext } from "react";
 import styled from "styled-components";
 import { UserContext } from "../../../providers/UseProvider";
+import { useRecoilValue } from "recoil";
+import { userState } from "../../../store/userState";
 
-export const UserIconWithName = (props) => {
+export const UserIconWithName = memo((props) => {
+  console.log(`UserIconWithName`);
   const { src, name } = props;
-  const { userInfo } = useContext(UserContext);
+  // const { userInfo } = useContext(UserContext);
+  const userInfo = useRecoilValue(userState);
   const isAdmin = userInfo ? userInfo.isAdmin : false;
   return (
     <Scontainer>
@@ -13,7 +17,7 @@ export const UserIconWithName = (props) => {
       {isAdmin && <SEdit>編集</SEdit>}
     </Scontainer>
   );
-};
+});
 
 const SImg = styled.img`
   border-radius: 50%;
