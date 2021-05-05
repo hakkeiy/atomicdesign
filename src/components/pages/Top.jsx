@@ -8,11 +8,11 @@ export const Top = () => {
   const history = useHistory();
   const { setUserInfo } = useContext(UserContext);
   const onClickAdmin = () => {
-    setUserInfo(true);
+    setUserInfo({ isAdmin: true });
     history.push("/users");
   };
   const onClickGeneral = () => {
-    setUserInfo(false);
+    setUserInfo({ isAdmin: false });
     history.push("/users");
   };
   return (
